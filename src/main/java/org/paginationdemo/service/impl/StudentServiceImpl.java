@@ -25,4 +25,10 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.findAll(pageable);
 	}
 
+	@Transactional
+	@Override
+	public Iterable<Student> save(Iterable<Student> students) {
+		return studentRepository.save(students);
+	}
+
 }

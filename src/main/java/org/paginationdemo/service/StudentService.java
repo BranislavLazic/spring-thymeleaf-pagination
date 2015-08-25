@@ -14,4 +14,13 @@ public interface StudentService {
 	 */
 	Page<Student> findAllPageable(Pageable pageable);
 
+	/**
+	 * Saves collection of students
+	 * 
+	 * @param students
+	 * 
+	 * @return collection of students
+	 */
+	Iterable<Student> save(Iterable<Student> students);
+
 }

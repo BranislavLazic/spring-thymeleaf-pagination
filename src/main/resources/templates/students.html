@@ -2,10 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Students</title>
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"
+	type="text/css" />
 </head>
 <body>
-
+	<div class="container">
+		<div class="row">
+			<table class="table">
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Age</th>
+				</tr>
+				<tr th:each="student : ${students}">
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td th:text="${student.age}"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
