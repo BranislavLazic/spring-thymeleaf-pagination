@@ -16,10 +16,10 @@
 					<th>Last name</th>
 					<th>Age</th>
 				</tr>
-				<tr th:each="student : ${students}">
-					<td th:text="${student.firstName}"></td>
-					<td th:text="${student.lastName}"></td>
-					<td th:text="${student.age}"></td>
+				<tr th:each="person : ${persons}">
+					<td th:text="${person.firstName}"></td>
+					<td th:text="${person.lastName}"></td>
+					<td th:text="${person.age}"></td>
 				</tr>
 			</table>
 		</div>

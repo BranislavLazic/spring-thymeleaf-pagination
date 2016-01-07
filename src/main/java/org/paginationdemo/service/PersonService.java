@@ -1,10 +1,10 @@
 package org.paginationdemo.service;
 
-import org.paginationdemo.domain.Student;
+import org.paginationdemo.domain.Person;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface StudentService {
+public interface PersonService {
 
 	/**
 	 * Finds a "page" of students
@@ -12,7 +12,7 @@ public interface StudentService {
 	 * @param pageable
 	 * @return {@link Page} instance
 	 */
-	Page<Student> findAllPageable(Pageable pageable);
+	Page<Person> findAllPageable(Pageable pageable);
 
 	/**
 	 * Saves collection of students
@@ -21,6 +21,6 @@ public interface StudentService {
 	 * 
 	 * @return collection of students
 	 */
-	Iterable<Student> save(Iterable<Student> students);
+	Iterable<Person> save(Iterable<Person> students);
 
 }

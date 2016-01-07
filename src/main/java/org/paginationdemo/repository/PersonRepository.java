@@ -1,10 +1,10 @@
 package org.paginationdemo.repository;
 
-import org.paginationdemo.domain.Student;
+import org.paginationdemo.domain.Person;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends PagingAndSortingRepository<Student, Long> {
+public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
 
 }

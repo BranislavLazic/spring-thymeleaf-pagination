@@ -6,11 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Student {
+public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long studentId;
+	private long personId;
 
 	private String firstName;
 
@@ -18,21 +18,21 @@ public class Student {
 
 	private int age;
 
-	public Student() {
+	public Person() {
 	}
 
-	public Student(String firstName, String lastName, int age) {
+	public Person(String firstName, String lastName, int age) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
 	}
 
-	public long getStudentId() {
-		return studentId;
+	public long getPersonId() {
+		return personId;
 	}
 
-	public void setStudentId(long studentId) {
-		this.studentId = studentId;
+	public void setPersonId(long studentId) {
+		this.personId = studentId;
 	}
 
 	public String getFirstName() {
@@ -61,8 +61,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", age="
-				+ age + "]";
+		return "Person [personId=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + "]";
 	}
 
 }
