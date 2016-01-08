@@ -27,8 +27,8 @@ public class PersonServiceImpl implements PersonService {
 
 	@Transactional
 	@Override
-	public Iterable<Person> save(Iterable<Person> students) {
-		return personRepository.save(students);
+	public Iterable<Person> save(Iterable<Person> persons) {
+		return personRepository.save(persons);
 	}
 
 }

@@ -3,9 +3,14 @@
 <head>
 
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>Persons</title>
 </head>
 <body>
 	<div class="container">
+		<div class="row">
+			<h1>Persons</h1>
+		</div>
 		<div class="row">
 			<table class="table">
 				<tr>
@@ -21,9 +26,24 @@
 			</table>
 		</div>
 		<div class="row">
-			<select id="pageSizeSelect">
-				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}" th:selected="${pageSize} == ${selectedPageSize}"></option>
-			</select>
+			<div class="form-group col-md-1">
+				<select class="form-control pagination" id="pageSizeSelect">
+					<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}" th:selected="${pageSize} == ${selectedPageSize}"></option>
+				</select>
+			</div>
+			<div th:if="${persons.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
+				<ul class="pagination">
+					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/} + '?page=1'">&laquo;</a></li>
+					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/} + '?page=' + ${persons.getNumber()}">&larr;</a></li>
+					<li th:class="${persons.getNumber() == (page - 1)} ? 'active pointer-disabled'"
+						th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a class="pageLink" th:href="@{/} + '?page=' + ${page}"
+						th:text="${page}"></a></li>
+					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink"
+						th:href="@{/} + '?page=' + ${persons.getNumber() + 2}">&rarr;</a></li>
+					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink"
+						th:href="@{/} + '?page=' + ${persons.getTotalPages()}">&raquo;</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>

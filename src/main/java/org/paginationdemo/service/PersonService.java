@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface PersonService {
 
 	/**
-	 * Finds a "page" of students
+	 * Finds a "page" of persons
 	 * 
 	 * @param pageable
 	 * @return {@link Page} instance
@@ -15,12 +15,12 @@ public interface PersonService {
 	Page<Person> findAllPageable(Pageable pageable);
 
 	/**
-	 * Saves collection of students
+	 * Saves collection of persons
 	 * 
-	 * @param students
+	 * @param persons
 	 * 
-	 * @return collection of students
+	 * @return collection of persons
 	 */
-	Iterable<Person> save(Iterable<Person> students);
+	Iterable<Person> save(Iterable<Person> persons);
 
 }
