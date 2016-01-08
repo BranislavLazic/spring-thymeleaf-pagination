@@ -30,12 +30,24 @@ public class PersonController {
 		this.personService = studentService;
 	}
 
+	/**
+	 * Handles all requests
+	 * 
+	 * @param pageSize
+	 * @param page
+	 * @return model and view
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView showStudentsPage(@RequestParam(value = "pageSize", required = false) Integer pageSize,
+	public ModelAndView showPersonsPage(@RequestParam(value = "pageSize", required = false) Integer pageSize,
 			@RequestParam(value = "page", required = false) Integer page) {
 		ModelAndView modelAndView = new ModelAndView("persons");
 
+		// Evaluate page size. If requested parameter is null, return initial
+		// page size
 		int evalPageSize = pageSize == null ? INITIAL_PAGE_SIZE : pageSize;
+		// Evaluate page. If requested parameter is null or less than 0 (to
+		// prevent exception), return initial size. Otherwise, return value of
+		// param. decreased by 1.
 		int evalPage = (page == null || page < 1) ? INITIAL_PAGE : page - 1;
 
 		Page<Person> persons = personService.findAllPageable(new PageRequest(evalPage, evalPageSize));
