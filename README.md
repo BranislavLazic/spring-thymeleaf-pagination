@@ -1,4 +1,4 @@
-# Demo for pagination that use Thymeleaf template engine
+# Demo for pagination with Thymeleaf template engine
 
 ## How to run
 
