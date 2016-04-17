@@ -33,12 +33,12 @@
 			</div>
 			<div th:if="${persons.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
 				<ul class="pagination">
-					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/?page=1}">&laquo;</a></li>
-					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/?page=} + ${persons.getNumber()}">&larr;</a></li>
+					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a></li>
+					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.getNumber()})}">&larr;</a></li>
 					<li th:class="${persons.getNumber() == (page - 1)} ? 'active pointer-disabled'"
-						th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a class="pageLink" th:href="@{/?page=} + ${page}" th:text="${page}"></a></li>
-					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink" th:href="@{/?page=} + ${persons.getNumber() + 2}">&rarr;</a></li>
-					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink" th:href="@{/?page=} + ${persons.getTotalPages()}">&raquo;</a></li>
+						th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a></li>
+					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.getNumber() + 2})}">&rarr;</a></li>
+					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize},page=${persons.getTotalPages()})}">&raquo;</a></li>
 				</ul>
 			</div>
 		</div>
