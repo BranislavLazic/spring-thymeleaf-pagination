@@ -24,11 +24,4 @@ public class PersonServiceImpl implements PersonService {
 	public Page<Person> findAllPageable(Pageable pageable) {
 		return personRepository.findAll(pageable);
 	}
-
-	@Transactional
-	@Override
-	public Iterable<Person> save(Iterable<Person> persons) {
-		return personRepository.save(persons);
-	}
-
 }
