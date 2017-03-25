@@ -31,14 +31,24 @@
 					<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}" th:selected="${pageSize} == ${selectedPageSize}"></option>
 				</select>
 			</div>
-			<div th:if="${persons.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
+			<div th:if="${persons.totalPages != 1}" class="form-group col-md-11 pagination-centered">
 				<ul class="pagination">
-					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a></li>
-					<li th:class="${persons.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.getNumber()})}">&larr;</a></li>
-					<li th:class="${persons.getNumber() == (page - 1)} ? 'active pointer-disabled'"
-						th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a></li>
-					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.getNumber() + 2})}">&rarr;</a></li>
-					<li th:class="${persons.getNumber() + 1 == persons.getTotalPages()} ? disabled"><a class="pageLink" th:href="@{/(pageSize=${selectedPageSize},page=${persons.getTotalPages()})}">&raquo;</a></li>
+					<li th:class="${persons.number == 0} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+					</li>
+					<li th:class="${persons.number == 0} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number})}">&larr;</a>
+					</li>
+					<li th:class="${persons.number == (page - 1)} ? 'active pointer-disabled'"
+						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
+					</li>
+					<li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a>
+					</li>
+					<li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.totalPages})}">&raquo;</a>
+					</li>
 				</ul>
 			</div>
 		</div>
