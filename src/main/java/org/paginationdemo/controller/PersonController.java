@@ -1,14 +1,14 @@
 package org.paginationdemo.controller;
 
+import java.util.Optional;
+
 import org.paginationdemo.domain.Pager;
 import org.paginationdemo.domain.Person;
 import org.paginationdemo.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +25,6 @@ public class PersonController {
 
 	private PersonService personService;
 
-	@Autowired
 	public PersonController(PersonService studentService) {
 		this.personService = studentService;
 	}
@@ -37,18 +36,18 @@ public class PersonController {
 	 * @param page
 	 * @return model and view
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView showPersonsPage(@RequestParam(value = "pageSize", required = false) Integer pageSize,
-			@RequestParam(value = "page", required = false) Integer page) {
+	@GetMapping("/")
+	public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page) {
 		ModelAndView modelAndView = new ModelAndView("persons");
 
 		// Evaluate page size. If requested parameter is null, return initial
 		// page size
-		int evalPageSize = pageSize == null ? INITIAL_PAGE_SIZE : pageSize;
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 		// Evaluate page. If requested parameter is null or less than 0 (to
 		// prevent exception), return initial size. Otherwise, return value of
 		// param. decreased by 1.
-		int evalPage = (page == null || page < 1) ? INITIAL_PAGE : page - 1;
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
 		Page<Person> persons = personService.findAllPageable(new PageRequest(evalPage, evalPageSize));
 		Pager pager = new Pager(persons.getTotalPages(), persons.getNumber(), BUTTONS_TO_SHOW);

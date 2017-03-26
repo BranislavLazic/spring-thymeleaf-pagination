@@ -13,14 +13,4 @@ public interface PersonService {
 	 * @return {@link Page} instance
 	 */
 	Page<Person> findAllPageable(Pageable pageable);
-
-	/**
-	 * Saves collection of persons
-	 * 
-	 * @param persons
-	 * 
-	 * @return collection of persons
-	 */
-	Iterable<Person> save(Iterable<Person> persons);
-
 }
