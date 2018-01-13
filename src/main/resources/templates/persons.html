@@ -2,59 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" />
-<link th:href="@{/css/style.css}" rel="stylesheet" />
-<title>Persons</title>
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Persons</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<h1>Persons</h1>
-		</div>
-		<div class="row">
-			<table class="table">
-				<tr>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Age</th>
-				</tr>
-				<tr th:each="person : ${persons}">
-					<td th:text="${person.firstName}"></td>
-					<td th:text="${person.lastName}"></td>
-					<td th:text="${person.age}"></td>
-				</tr>
-			</table>
-		</div>
-		<div class="row">
-			<div class="form-group col-md-1">
-				<select class="form-control pagination" id="pageSizeSelect">
-					<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}" th:selected="${pageSize} == ${selectedPageSize}"></option>
-				</select>
-			</div>
-			<div th:if="${persons.totalPages != 1}" class="form-group col-md-11 pagination-centered">
-				<ul class="pagination">
-					<li th:class="${persons.number == 0} ? disabled">
-						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
-					</li>
-					<li th:class="${persons.number == 0} ? disabled">
-						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number})}">&larr;</a>
-					</li>
-					<li th:class="${persons.number == (page - 1)} ? 'active pointer-disabled'"
-						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
-					</li>
-					<li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
-						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a>
-					</li>
-					<li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
-						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.totalPages})}">&raquo;</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/app.js}"></script>
+<div class="container">
+    <div class="row">
+        <h1>Persons</h1>
+    </div>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+            </tr>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.age}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-1">
+            <select class="form-control pagination" id="pageSizeSelect">
+                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                        th:selected="${pageSize} == ${selectedPageSize}"></option>
+            </select>
+        </div>
+        <div th:if="${persons.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+            <ul class="pagination">
+                <li th:class="${persons.number == 0} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                </li>
+                <li th:class="${persons.number == 0} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number})}">&larr;</a>
+                </li>
+                <li th:class="${persons.number == (page - 1)} ? 'active pointer-disabled'"
+                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+                       th:text="${page}"></a>
+                </li>
+                <li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
+                    <a class="pageLink"
+                       th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a>
+                </li>
+                <li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
+                    <a class="pageLink"
+                       th:href="@{/(pageSize=${selectedPageSize}, page=${persons.totalPages})}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>
