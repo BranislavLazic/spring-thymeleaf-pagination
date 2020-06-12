@@ -32,8 +32,8 @@ public class PersonController {
     /**
      * Handles all requests
      *
-     * @param pageSize
-     * @param page
+     * @param pageSize - the size of the page
+     * @param page - the page number
      * @return model and view
      */
     @GetMapping("/")
