@@ -1,5 +1,10 @@
-.pagination-centered {
-    text-align: center;
+.pagination-container {
+    text-align: right;
+    padding-right: 0;
+}
+
+.page-select {
+    padding-left: 0;
 }
 
 .disabled {

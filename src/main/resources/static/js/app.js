@@ -1,9 +1,9 @@
 $(document).ready(() => {
-	changePageAndSize();
+    changePageAndSize();
 });
 
 changePageAndSize = () => {
-	$('#pageSizeSelect').change(evt => {
-		window.location.replace(`/?pageSize=${evt.target.value}&page=1`);
-	});
+    $('#pageSizeSelect').change(evt => {
+        window.location.replace(`/?pageSize=${evt.target.value}&page=1`);
+    });
 }

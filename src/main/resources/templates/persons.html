@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <title>Persons</title>
@@ -12,7 +11,7 @@
         <h1>Persons</h1>
     </div>
     <div class="row">
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <th>First name</th>
                 <th>Last name</th>
@@ -26,13 +25,13 @@
         </table>
     </div>
     <div class="row">
-        <div class="form-group col-md-1">
+        <div class="form-group col-md-1 page-select">
             <select class="form-control pagination" id="pageSizeSelect">
                 <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
                         th:selected="${pageSize} == ${selectedPageSize}"></option>
             </select>
         </div>
-        <div th:if="${persons.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+        <div th:if="${persons.totalPages != 1}" class="form-group col-md-11 pagination-container">
             <ul class="pagination">
                 <li th:class="${persons.number == 0} ? disabled">
                     <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
